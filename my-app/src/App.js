@@ -1,72 +1,71 @@
-import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
+import React, { useEffect, useState } from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
 
-
-const Person = ({ personId }) => {
-  const [loading, setLoading] = useState(true);
-  const [person, setPerson] = useState({});
-
-  console.error(
-    "<<<<<<<<<<[Person] loading :",
+const usePerson = personId => {
+  const [loading, setLoading] = useState(true)
+  const [person, setPerson] = useState({})
+  console.warn(
+    '2@1 [usePerson] loading:',
     loading,
-    "person:",
+    ' person:',
     person,
-    " personId:",
+    ' personId:',
     personId,
-    " time:",
+    ' time:',
     +new Date()
-  );
-
+  )
   useEffect(() => {
-    // this : undefined
-    console.warn(
-      "[useEffect] personId:",
-      personId,
-      "loading:",
-      loading,
-      "person:",
-      person,
-      +new Date()
-    );
-    setLoading(true);
-    setTimeout(()=>{
-      // eslint-disable-next-line
-        console.warn(' setTimeout after  setLoading(true) &&&&&&&& loading:',loading,+new Date);
-    });
+    setLoading(`${+new Date()}@true`)
+    console.error(
+      '3 [useEffect]>>>>>:',
+      ' time:',
+      +new Date(),
+      'loading:',
+      loading
+    )
     fetch(`https://swapi.co/api/people/${personId}/`)
       .then(response => response.json())
       .then(data => {
-        // this : undefined
-        console.warn(
-          "[useEffect] ajax response:",
-          data,
-          "  time:",
-          +new Date(),
-          "loading:",
-          loading,
-          "-->person:",
-          person
-        );
-        //
-        setLoading(+new Date() + "@hjou"); //person函数会重新执行
-        setPerson(data); //person函数会重新执行
-      });
-  // eslint-disable-next-line
-  }, [personId]);
-
-  console.error(
-    ">>>>>>>>[Person] loading :",
+        setPerson(data)
+        setLoading(`${+new Date()}@test`)
+      })
+    // eslint-disable-next-line
+  }, [personId])
+  console.warn(
+    '2@2 [usePerson] loading:',
     loading,
-    "person:",
+    ' person:',
     person,
-    " personId:",
+    ' personId:',
     personId,
-    " time:",
+    ' time:',
     +new Date()
-  );
+  )
+  return [loading, person]
+}
+
+const Person = ({ personId }) => {
+  console.error(
+    '1@1 [Person]:',
+    ' time:',
+    +new Date(),
+    'loading:',
+    // eslint-disable-next-line
+    loading,'person:',person
+  )
+  var [loading, person] = usePerson(personId)
+  console.error(
+    '1@2 [Person]:',
+    ' time:',
+    +new Date(),
+    'loading:',
+    // eslint-disable-next-line
+    loading,'person:',person
+  )
+
   if (loading === true) {
-    return <p>Loading ...</p>;
+    return <p>Loading .....</p>
   }
 
   return (
@@ -75,26 +74,25 @@ const Person = ({ personId }) => {
       <p>Height: {person.height}</p>
       <p>Mass: {person.mass}</p>
     </div>
-  );
-};
+  )
+}
 
 function App() {
-  const [show, setShow] = useState("1");
+  const [show, setShow] = useState('1')
 
   return (
     <div className="App">
       <Person personId={show} />
       <div>
-        Show:{show}
-        <button onClick={() => setShow("1")}>Luke</button>
-        <button onClick={() => setShow("2")}>C-3PO</button>
+        Show:
+        <button onClick={() => setShow('1')}>Luke</button>
+        <button onClick={() => setShow('2')}>C-3PO</button>
       </div>
     </div>
-  );
+  )
 }
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+const rootElement = document.getElementById('root')
+ReactDOM.render(<App />, rootElement)
 
-
-export default App;
+export default App
