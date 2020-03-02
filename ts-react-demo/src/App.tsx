@@ -2,14 +2,28 @@ import React from 'react';
 import './App.css';
 import logo from './logo.svg';
 
+interface Person {
+  age?: number;
+  name: string;
+}
+
+let a:Person ={
+  name:'1'
+}
 
 
 function buildName(firstName = "Will", lastName: string) {
   return firstName + " " + lastName;
 }
 
+function buildName2(firstName , lastName?: string) {
+  return firstName + " " + lastName;
+}
+
+
 var aa=12;
 let result1 = buildName(undefined,"Bob");  
+let result2 = buildName2(1,'2');  
 
 function App() {
   return (
