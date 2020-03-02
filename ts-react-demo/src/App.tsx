@@ -1,6 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import logo from './logo.svg';
+
+function buildName(firstName = "Will", lastName: string) {
+  return firstName + " " + lastName;
+}
+
+let result1 = buildName(undefined,"Bob");                  
+
 
 function App() {
   return (
