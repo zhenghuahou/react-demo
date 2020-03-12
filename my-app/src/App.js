@@ -15,12 +15,34 @@ function App() {
     <div className="App">
       {/* <h1>{ title }</h1> */}
       {/* <button onClick={() => setTitle("title 已经改变")}>改名字</button> */}
-      <Child name="桃桃"></Child>
+      <Child name="桃桃11"></Child>
     </div>
   );
 }
 
+
+class Main extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+  }
+
+  componentWillUnmount() {
+  }
+  render() {
+      return (
+      <div className={cx('category')} >
+        <p>test</p>
+      </div>
+    );
+  }
+}
+
+
+alert(1);
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<Main />, rootElement);
 
 export default App;

@@ -46,4 +46,18 @@ function App() {
   );
 }
 
+
+
+
+class Db {
+  /**
+ * @param config - An object that expects the mongo_uri path
+ * @returns Returns the mongo connection
+ */
+  public static connect = (config: {mongo_uri: string}) => {
+   
+  };
+}
+
+
 export default App;
